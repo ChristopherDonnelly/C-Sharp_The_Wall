@@ -1,0 +1,14 @@
+@model The_Wall.Models.Message
+<form asp-controller="Wall" asp-action="PostMessage" method="post">
+    <div class="col-12 d-inline-block p-0 align-text-top my-0">
+        <input asp-for="UserId" type="hidden"/>
+        <label asp-for="MessageContent" class="d-inline-block p-0 h6"></label>
+        <textarea asp-for="MessageContent" class="form-control d-inline-block col-12 m-auto border-dark" placeholder="Enter Message"></textarea>
+        <div class="col-6 d-inline-block p-0 align-text-top my-3">
+            <span asp-validation-for="MessageContent" class="text-danger pl-3"></span>
+        </div>
+        <div class="col-5 d-inline-block p-0 align-text-top my-2 text-right">
+            <button class="btn btn-dark" type="submit">Post a Message</button>
+        </div>
+    </div>
+</form>

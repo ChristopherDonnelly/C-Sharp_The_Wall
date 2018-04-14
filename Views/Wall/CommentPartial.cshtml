@@ -1,0 +1,20 @@
+@model The_Wall.Models.Comment
+<form asp-controller="Wall" asp-action="PostComment" method="post" class="mb-2">
+    <div class="col-12 d-inline-block p-0 align-text-top my-0">
+        <input name="UserId" type="hidden" value="@Model.UserId"/>
+        <input name="MessageId" type="hidden" value="@Model.MessageId"/>
+        <label for="Content" class="d-inline-block p-0 h6">Post a Comment: </label>
+        <textarea name="Content" class="form-control d-inline-block col-12 m-auto border-light" placeholder="Enter Comment"></textarea>
+        <div class="col-6 d-inline-block p-0 align-text-top my-3">
+            @{
+                if(@ViewData["_"+@Model.MessageId] != null)
+                {
+                    <span class="text-danger pl-3">@ViewData["_"+@Model.MessageId]</span>
+                }
+            }
+        </div>
+        <div class="col-5 d-inline-block p-0 align-text-top my-2 mb-0 text-right">
+            <button class="btn btn-secondary" type="submit">Post a Comment</button>
+        </div>
+    </div>
+</form>

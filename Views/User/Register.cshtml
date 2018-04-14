@@ -1,0 +1,42 @@
+﻿@model Login_Register.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="row">
+    <div class="col-8 mx-auto mt-5">
+        <form asp-controller="User" asp-action="Register" method="post" class="form-control">
+            <h2 class="text-center">@ViewData["Title"]</h2>
+            <div class="col-12 d-inline-block p-0 align-text-top my-2">
+            	<label asp-for="FirstName" class="d-inline-block col-3 p-0 text-right"></label>
+            	<input asp-for="FirstName" class="form-control d-inline-block col-8 m-auto" placeholder="Enter First Name" aria-label="Enter First Name" />
+                <span asp-validation-for="FirstName" class="d-block pl-3 offset-3 text-danger"></span>
+	    	</div>
+            <div class="col-12 d-inline-block p-0 align-text-top my-2">
+            	<label asp-for="LastName" class="d-inline-block col-3 p-0 text-right"></label>
+            	<input asp-for="LastName" class="form-control d-inline-block col-8 m-auto" placeholder="Enter Last Name" aria-label="Enter Last Name" />
+                <span asp-validation-for="LastName" class="d-block pl-3 offset-3 text-danger"></span>
+	    	</div>
+            <div class="col-12 d-inline-block p-0 align-text-top my-2">
+            	<label asp-for="Email" class="d-inline-block col-3 p-0 text-right"></label>
+            	<input asp-for="Email" class="form-control d-inline-block col-8 m-auto" placeholder="Enter Email" aria-label="Enter Email" />
+                <span asp-validation-for="Email" class="d-block pl-3 offset-3 text-danger"></span>
+                <span asp-validation-for="Unique" class="d-block pl-3 offset-3 text-danger unique"></span>
+	    	</div>
+            <div class="col-12 d-inline-block p-0 align-text-top my-2">
+            	<label asp-for="Password" class="d-inline-block col-3 p-0 text-right"></label>
+            	<input asp-for="Password" class="form-control d-inline-block col-8 m-auto" placeholder="Enter Password" aria-label="Enter Password" />
+                <span asp-validation-for="Password" class="d-block pl-3 offset-3 text-danger"></span>
+	    	</div>
+            <div class="col-12 d-inline-block p-0 align-text-top my-2">
+            	<label asp-for="PasswordConfirmation" class="d-inline-block col-3 p-0 text-right"></label>
+            	<input asp-for="PasswordConfirmation" type="password" class="form-control d-inline-block col-8 m-auto" placeholder="Confirm Password" aria-label="Confirm Password" />
+                <span asp-validation-for="PasswordConfirmation" class="d-block pl-3 offset-3 text-danger"></span>
+	    	</div>
+            <div class="col-12 d-inline-block p-0 align-text-top my-2 text-right pr-5">
+            	<button class="btn btn-dark" type="submit">Create new User</button>
+	    	</div>
+        </form>
+    </div>
+</div>

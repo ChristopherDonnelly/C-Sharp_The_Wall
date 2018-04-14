@@ -1,0 +1,37 @@
+﻿
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+label {
+    padding: 0.375rem 0ps;
+}
+
+.text-danger {
+    height: 25px;
+}
+
+.unique {
+    position: absolute;
+    top: 40px;
+}
+
+textarea {
+    height: 100px;
+}
+
+#messages {
+    height: 500px;
+    overflow-y: auto;
+}
+
+.card, textarea, .card-body button {
+    box-shadow: 3px 3px 3px lightslategray;
+}
+
+.card .card, .card .card textarea, .card .card .card-body button {
+    box-shadow: 2px 2px 5px black;
+}

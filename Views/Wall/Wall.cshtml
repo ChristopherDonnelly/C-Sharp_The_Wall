@@ -1,0 +1,88 @@
+@model The_Wall.Models.ModelBundle
+
+@{
+    ViewData["Title"] = "The Wall";
+}
+
+<div class="row">
+    <div class="col-10 mt-5 mx-auto">
+        <div class="card border-secondary mb-3">
+            <div class="card-body pb-2">
+                @Html.Partial("MessagePartial", @Model.SingleMessage)
+            </div>
+            <div class="card-footer bg-secondary pl-3" id="messages">
+                <div class="ml-1">
+                    @{
+                        foreach (Message message in @Model.AllMessages)
+                        {
+
+                            <div class="card mb-2 mr-2 text-white bg-dark">
+                                <form asp-controller="Wall" asp-action="DeleteMessage" method="POST">
+                                    <input type="hidden" name="UseerId" value="@ViewData["UserId"]" />
+                                    <input type="hidden" name="MessageId" value="@Html.DisplayFor(modelItem => message.MessageId)" />
+                                    <h5 class="card-header">
+                                        @Html.DisplayFor(modelItem => message.FullName) - @Html.DisplayFor(modelItem => message.CreatedAt)
+                                        @{
+                                            if(message.UserId == (int)@ViewData["UserId"])
+                                            {
+                                                <button type="submit" class="close" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            }
+                                        }
+                                    </h5>
+                                </form>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        @Html.DisplayFor(modelItem => message.MessageContent)
+                                    </p>
+                                </div>
+                                @{
+                                    if(message.Comments.Count()>0)
+                                    {
+                                        <div class="card-footer pl-3">
+                                            @{
+                                                foreach (Comment comment in message.Comments)
+                                                {
+
+                                                    <div class="card mb-2 ml-2 text-white bg-dark border-secondary">
+                                                        <form asp-controller="Wall" asp-action="DeleteComment" method="POST">
+                                                            <input type="hidden" name="UserId" value="@Html.DisplayFor(modelItem => comment.UserId)" />
+                                                            <input type="hidden" name="MessageId" value="@Html.DisplayFor(modelItem => comment.MessageId)" />
+                                                            <input type="hidden" name="CommentId" value="@Html.DisplayFor(modelItem => comment.CommentId)" />
+                                                            <h6 class="card-header">
+                                                                @Html.DisplayFor(modelItem => comment.FullName) - @Html.DisplayFor(modelItem => comment.CreatedAt)
+                                                                @{
+                                                                    if(comment.UserId == (int)@ViewData["UserId"])
+                                                                    {
+                                                                        <button type="submit" class="close" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    }
+                                                                }
+                                                            </h6>
+                                                        </form>
+                                                        <div class="card-body">
+                                                            <p class="card-text">
+                                                                @Html.DisplayFor(modelItem => comment.Content)
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+                                    }
+                                }
+                                <div class="card mb-2 mx-2 text-white bg-dark border-secondary">
+                                    <div class="card-body pb-0">
+                                        @Html.Partial("CommentPartial", new Comment { UserId = (int)ViewData["UserId"], MessageId = @message.MessageId, Content = "" })
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

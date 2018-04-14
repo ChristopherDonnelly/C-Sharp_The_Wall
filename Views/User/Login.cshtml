@@ -1,0 +1,26 @@
+﻿@model Login_Register.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="row">
+    <div class="col-8 mx-auto mt-5">
+        <form asp-controller="User" asp-action="Login" method="post" class="form-control">
+            <h2 class="text-center">@ViewData["Title"]</h2>
+            <div class="col-12 d-inline-block p-0 align-text-top my-2">
+            	<label asp-for="Email" class="d-inline-block col-3 p-0 text-right"></label>
+            	<input asp-for="Email" class="form-control d-inline-block col-8 m-auto" placeholder="Enter Email" aria-label="Enter Email" />
+                <span asp-validation-for="Found" class="d-block pl-3 offset-3 text-danger"></span>
+	    	</div>
+            <div class="col-12 d-inline-block p-0 align-text-top my-2">
+            	<label asp-for="Password" class="d-inline-block col-3 p-0 text-right"></label>
+            	<input asp-for="Password" class="form-control d-inline-block col-8 m-auto" placeholder="Enter Password" aria-label="Enter Password" />
+                <span asp-validation-for="PasswordConfirmation" class="d-block pl-3 offset-3 text-danger"></span>
+	    	</div>
+            <div class="col-12 d-inline-block p-0 align-text-top my-2 text-right pr-5">
+            	<button class="btn btn-dark" type="submit">Login</button>
+	    	</div>
+        </form>
+    </div>
+</div>
